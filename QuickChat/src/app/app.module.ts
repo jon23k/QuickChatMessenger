@@ -32,9 +32,35 @@ import {
   MdSnackBarModule,
   MdTabsModule,
   MdToolbarModule,
-  MdTooltipModule,
-  MaterialModule
+  MdTooltipModule
 } from '@angular/material';
+
+
+export const MaterialModules = [
+  MdAutocompleteModule,
+  MdButtonModule,
+  MdButtonToggleModule,
+  MdCardModule,
+  MdCheckboxModule,
+  MdDialogModule,
+  MdGridListModule,
+  MdIconModule,
+  MdInputModule,
+  MdListModule,
+  MdMenuModule,
+  MdProgressBarModule,
+  MdProgressSpinnerModule,
+  MdRadioModule,
+  MdRippleModule,
+  MdSelectModule,
+  MdSidenavModule,
+  MdSliderModule,
+  MdSlideToggleModule,
+  MdSnackBarModule,
+  MdTabsModule,
+  MdToolbarModule,
+  MdTooltipModule,
+];
 
 @NgModule({
   declarations: [
@@ -42,7 +68,14 @@ import {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+     FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseconfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    MaterialModules,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
