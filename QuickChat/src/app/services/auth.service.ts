@@ -11,15 +11,18 @@ export class AuthService {
   public isSignedInStream: Observable<boolean>;
   public displayNameStream: Observable<string>;
   public photoUrl: string;
+  public userID: string;
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {
     this.afAuth.authState.subscribe( (user: firebase.User) =>{
       if(user){
           console.log(user, "has signed in");
           this.photoUrl = user.photoURL;
+          this.userID = user.uid;
       } else {
           console.log("Failed to sign in");
           this.photoUrl = "";
+          this.userID = "";
       }
    });
    this.isSignedInStream = this.afAuth.authState.map<firebase.User, boolean>
@@ -34,6 +37,7 @@ export class AuthService {
        return "";
      }
     });
+    
   }
 
   signOut(): void{

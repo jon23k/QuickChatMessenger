@@ -4,7 +4,10 @@
   <img src="/assets/images/missing_photo.png" alt="Missing photo">
   </ng-template>
   
-  <md-input-container fxFlex divderColor="warn">
-    <input mdInput type="text" placeholder="Make a Post" required>
+  <form fxFlex fxLayout (ngSubmit)="onSubmit()">
+  <md-input-container fxFlex divderColor="#008080">
+    <input mdInput type="text" placeholder="Make a Post" required
+    [(ngModel)]="postBodyText" name="postBodyText">
   </md-input-container>
+  </form>
 </md-card>
