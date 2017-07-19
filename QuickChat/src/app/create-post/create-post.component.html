@@ -1,3 +1,10 @@
-<p>
-  create-post works!
-</p>
+<md-card fxLayout="row">
+  <img *ngIf="authService.photoUrl;else noPhotoTemplate" [src]="authService.photoUrl" alt="Google profile photo">
+  <ng-template #noPhotoTemplate> 
+  <img src="/assets/images/missing_photo.png" alt="Missing photo">
+  </ng-template>
+  
+  <md-input-container fxFlex divderColor="warn">
+    <input mdInput type="text" placeholder="Make a Post" required>
+  </md-input-container>
+</md-card>
