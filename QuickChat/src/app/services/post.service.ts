@@ -16,4 +16,8 @@ export class PostService {
 
   }
 
+  get postsStream(): FirebaseListObservable<Post[]>{
+    return this._postsStream;
+  }
+
 }
