@@ -37,6 +37,8 @@ import {
 import { MainComponent } from './main/main.component';
 import { SigninComponent } from './signin/signin.component';
 import { MypostsComponent } from './myposts/myposts.component';
+import { AuthService } from "./services/auth.service";
+import { AuthGuard } from "./services/auth.guard";
 
 
 export const MaterialModules = [
@@ -83,7 +85,10 @@ export const MaterialModules = [
     BrowserAnimationsModule,
     FlexLayoutModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
