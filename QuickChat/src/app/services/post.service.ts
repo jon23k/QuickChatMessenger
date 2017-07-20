@@ -14,9 +14,10 @@ import 'rxjs/add/operator/switchMap';
 @Injectable()
 export class PostService {
   readonly postsPath = "posts";
-  readonly postBatchSize = 8;
+  readonly postBatchSize = 2;
   postsWithAuthorStream : Observable<PostWithAuthor[]>;
   private postIncrementStream: Subject<number>;
+  public hideLoadMoreButton = false;
 
   constructor(private db: AngularFireDatabase, private authorService: AuthorService) { 
     this.postIncrementStream = new BehaviorSubject<number>(this.postBatchSize);
@@ -37,8 +38,10 @@ export class PostService {
     this.postsWithAuthorStream = Observable.combineLatest<PostWithAuthor[]>(
       postsStream,
       this.authorService.authorMapStream,
-      (posts: Post[], authorMap: Map<string, Author>) => {
+      numPostsStream,
+      (posts: Post[], authorMap: Map<string, Author>, numPostsRequested: number) => {
         const postsWithAuthor: PostWithAuthor[] = [];
+        this.hideLoadMoreButton = numPostsRequested > posts.length;
         console.log("Posts", posts);
         console.log("Author map: ", authorMap);
         for(let post of posts){
